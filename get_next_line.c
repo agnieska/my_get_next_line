@@ -6,7 +6,7 @@
 /*   By: aslusarc <aslusarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 18:24:06 by aslusarc          #+#    #+#             */
-/*   Updated: 2018/03/05 11:46:25 by aslusarc         ###   ########.fr       */
+/*   Updated: 2018/03/28 22:43:58 by aslusarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static	int		ft_readline(char **ptr, char **buff, char **line)
 
 int				get_next_line(int const fd, char **line)
 {
-	static char	*hashtable[1000];
+	static char	*hashtable[2048];
 	char		*buffer;
 	int			readline;
 	int			result;
