@@ -6,7 +6,7 @@
 /*   By: aslusarc <aslusarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 18:24:06 by aslusarc          #+#    #+#             */
-/*   Updated: 2018/03/28 22:43:58 by aslusarc         ###   ########.fr       */
+/*   Updated: 2018/03/28 23:30:46 by aslusarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@
 
 static	size_t	find_endline(char *buff)
 {
-	size_t lengh;
+	size_t index;
 
-	lengh = 0;
-	while (buff[lengh] != '\0' && buff[lengh] != '\n')
-		lengh++;
-	if (buff[lengh] == '\n')
+	index = 0;
+	while (buff[index] != '\0' && buff[index] != '\n')
+		index++;
+	if (buff[index] == '\n')
 	{
-		buff[lengh] = '\0';
-		return (lengh);
+		buff[index] = '\0';
+		return (index);
 	}
 	else
 		return (-1);
 }
 
-static	char	*join(char *ptr, char *buff)
+static	char	*join(char *remaining, char *buff)
 {
 	size_t	i;
 	size_t	j;
@@ -38,31 +38,31 @@ static	char	*join(char *ptr, char *buff)
 
 	i = 0;
 	j = 0;
-	if (ptr)
-		i = ft_strlen(ptr);
+	if (remaining)
+		i = ft_strlen(remaining);
 	if (buff)
 		j = ft_strlen(buff);
 	join = (char *)malloc(sizeof(*join) * (i + j + 1));
-	ft_memcpy(join, ptr, i);
+	ft_memcpy(join, remaining, i);
 	ft_memcpy(join + i, buff, j);
 	join[i + j] = '\0';
-	free(ptr);
+	free(remaining);
 	ft_bzero(buff, BUFF_SIZE + 1);
 	return (join);
 }
 
-static	int		ft_readline(char **ptr, char **buff, char **line)
+static	int		ft_readline(char **remaining, char **buff, char **line)
 {
 	char	*temp;
 	int		end;
 
-	*ptr = join(*ptr, *buff);
-	end = find_endline(*ptr);
+	*remaining = join(*remaining, *buff);
+	end = find_endline(*remaining);
 	if (end > -1)
 	{
-		*line = ft_strdup(*ptr);
-		temp = *ptr;
-		*ptr = ft_strdup(*ptr + end + 1);
+		*line = ft_strdup(*remaining);
+		temp = *remaining;
+		*remaining = ft_strdup(*remaining + end + 1);
 		free(temp);
 		return (1);
 	}
