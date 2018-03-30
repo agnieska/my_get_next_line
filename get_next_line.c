@@ -6,13 +6,11 @@
 /*   By: aslusarc <aslusarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 18:24:06 by aslusarc          #+#    #+#             */
-/*   Updated: 2018/03/28 23:30:46 by aslusarc         ###   ########.fr       */
+/*   Updated: 2018/03/30 16:08:02 by aslusarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/includes/libft.h"
 #include "get_next_line.h"
-#include <unistd.h>
 
 static	size_t	find_endline(char *buff)
 {
@@ -71,7 +69,7 @@ static	int		ft_readline(char **remaining, char **buff, char **line)
 
 int				get_next_line(int const fd, char **line)
 {
-	static char	*hashtable[2048];
+	static char	*hashtable[FOPEN_MAX];
 	char		*buffer;
 	int			readline;
 	int			result;
